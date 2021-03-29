@@ -17,6 +17,7 @@ def a(f):
     with open(f, "r") as q:
         for l in q:
             mm += [c for c in l]
+    
 
     mm = ["<s>", "<s>"] + mm + ["<e>", "<e>"]
     return mm, list(set(mm))
@@ -49,9 +50,11 @@ if __name__ == "__main__":
     parser.add_argument("h", type=str)
     
     args = parser.parse_args()
+    
 
     q = a(args.m)
     w = b(q[0], q[1])
+    
     t = train(w[0], w[1], q[1], args.k, args.r)
 
     torch.save(t, args.h)
